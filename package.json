@@ -1,0 +1,19 @@
+{
+  "name": "codewars",
+  "version": "1.0.0",
+  "description": "This repo contains some of my solutions to problems on the website codewars.com. Problems are contributed by users and ranked by difficulty in \"kyu\", a descending numbered grade used in Japanese martial arts, with 8 being the easiest and 1 the hardest.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdevo23/codewars.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdevo23/codewars/issues"
+  },
+  "homepage": "https://github.com/jdevo23/codewars#readme"
+}
