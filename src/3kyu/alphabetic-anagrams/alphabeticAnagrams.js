@@ -1,6 +1,6 @@
-function listPosition(word) {
+const listPosition = (word) => {
   word = word.split("");
-  const bestWord = word.slice().sort();
+  const sorted = word.slice().sort();
 
   const factorialise = (num) => {
     if (num < 0) {
@@ -12,58 +12,38 @@ function listPosition(word) {
     }
   };
 
-  const calculateCombinations = (array) => {
-    const obj = {};
+  const getLetterCounts = (word) =>
+    word.split("").reduce((acc, letter) => {
+      acc[letter] = acc[letter] ? acc[letter] + 1 : 1;
+      return acc;
+    }, {});
 
-    for (let i = 0; i < array.length; i++) {
-      if (obj[array[i]]) {
-        obj[array[i]] = obj[array[i]] += 1;
-      } else {
-        obj[array[i]] = 1;
-      }
-    }
+  const calculatePermutations = (word) => {
+    const x = factorialise(word.length);
+    const letterCountsMap = getLetterCounts(word);
+    const y = Object.values(letterCountsMap).reduce(
+      (acc, letterCount) => acc * factorialise(letterCount),
+      1
+    );
 
-    let divisor = 1;
-
-    for (const key in obj) {
-      divisor = divisor * factorialise(obj[key]);
-    }
-
-    return factorialise(array.length) / divisor;
+    return x / y;
   };
 
-  const calculateCharOccurrences = (char, array) => {
-    let num = 0;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === char) {
-        num++;
-      }
-    }
-    return num;
-  };
+  return word.reduce((a, c) => {
+    const index = sorted.indexOf(c);
 
-  const calculatePosition = (p, index, numOccurrences, numCombinations) => {
-    if (index > 1) {
-      if (!numOccurrences) {
-        return p + numCombinations;
-      } else {
-        return;
-      }
-    } else {
-      return p;
-    }
-  };
+    sorted.splice(index, 1);
 
-  let position = calculateCombinations(bestWord);
+    const set = [...new Set(sorted.slice(0, index))];
 
-  for (let i = 0; i < word.length; i++) {
-    // find index of letter in array
-    const index = bestWord.indexOf(word[i]);
-    // remove element from array
-    bestWord.splice(index, 1);
-    // update range
-    //     position = calculatePosition(position, index + 1, calculateCharOccurrences(word[i], bestWord), calculateCombinations(bestWord));
-  }
+    return (
+      a +
+      set.reduce(
+        (acc, l) => acc + calculatePermutations(sorted.join("").replace(l, c)),
+        0
+      )
+    );
+  }, 1);
+};
 
-  return position;
-}
+module.exports = listPosition;
