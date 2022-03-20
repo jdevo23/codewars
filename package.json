@@ -1,7 +1,7 @@
 {
   "name": "codewars",
   "version": "1.0.0",
-  "description": "This repo contains some of my solutions to problems on the website codewars.com. Problems are contributed by users and ranked by difficulty in \"kyu\", a descending numbered grade used in Japanese martial arts, with 8 being the easiest and 1 the hardest.",
+  "description": "Solutions for problems on codewars.com",
   "main": "index.js",
   "scripts": {
     "test": "jest"
