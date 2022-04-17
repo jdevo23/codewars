@@ -4,7 +4,7 @@
 */
 
 // returns true if number can be entered into a position, false if not
-const checkPossibility = (num, coords, puzzle) => {
+function checkPossibility (num, coords, puzzle) {
   const [row, col] = coords;
 
   // check rows
